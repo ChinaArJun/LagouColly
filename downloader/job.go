@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"go_jobs/fake"
+	"go_jobs/pkg/uuid"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -137,7 +138,7 @@ func (l *jobService) GetJobs(pn int, kd string) (*ListResult, error) {
 	req.Header.Add("Connection", "keep-alive")
 	req.Header.Add("Content-Length", "25")
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
-	req.Header.Add("Cookie", "JSESSIONID=ABAAABAABEIABCI76211F4613E8F3F9A0CDBC51203F3A7F; WEBTJ-ID=20201224094055-1769267f49fb2b-091b185a012074-6c112c7c-2073600-1769267f4a0ab9; RECOMMEND_TIP=true; sajssdk_2015_cross_new_user=1; sensorsdata2015session=%7B%7D; _ga=GA1.2.885228844.1608774055; _gid=GA1.2.608180794.1608774055; user_trace_token=20201224094055-acc83966-b0e2-46fc-8cca-2ff7f766a74f; LGUID=20201224094055-4f6b3c1e-5f78-41b2-9487-7a5c3d07bf3d; Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1608774058; index_location_city=%E5%8C%97%E4%BA%AC; TG-TRACK-CODE=index_navigation; _gat=1; PRE_UTM=; PRE_HOST=; PRE_LAND=https%3A%2F%2Fwww.lagou.com%2Fbeijing-zhaopin%2FPHP%2F%3FlabelWords%3Dlabel; LGSID=20201224152305-1e0a58d9-10d4-49ec-a26e-9e65762bf6ae; PRE_SITE=; X_MIDDLE_TOKEN=ff1483623518fd983229c5c2bdc29a20; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221769267f60155-0b0b299e842fc3-6c112c7c-2073600-1769267f6027fd%22%2C%22first_id%22%3A%22%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24os%22%3A%22MacOS%22%2C%22%24browser%22%3A%22Chrome%22%2C%22%24browser_version%22%3A%2287.0.4280.88%22%7D%2C%22%24device_id%22%3A%221769267f60155-0b0b299e842fc3-6c112c7c-2073600-1769267f6027fd%22%7D; Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1608794619; LGRID=20201224152339-cf7bae69-a317-42e3-9026-ee4437c0de09; X_HTTP_TOKEN=1ba6de335b5ff0250074978061d5e968478a6dcbb4; SEARCH_ID=8e8b77c1cf3a42a4aa1d650d5abffffd")
+	//req.Header.Add("Cookie", "JSESSIONID=ABAAAECAAEBABII45B4E573CCBBBB801A41CA901C6E6DA1; WEBTJ-ID=20201224100334-176927cb253829-08d0cead4d3b92-c791039-1235456-176927cb254cae; RECOMMEND_TIP=true; sajssdk_2015_cross_new_user=1; sensorsdata2015session=%7B%7D; user_trace_token=20201224100334-40bb12e9-8494-40e7-abaf-47f930a0f852; LGUID=20201224100334-b7d5a719-3544-4aac-9848-cf11e2c388a6; _ga=GA1.2.1567927933.1608775415; Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1608775417; index_location_city=%E4%B8%8A%E6%B5%B7; TG-TRACK-CODE=index_search; _gid=GA1.2.2121908850.1608777451; X_MIDDLE_TOKEN=0381d92729dcb7b6e0ed511aed3258b0; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22176927cb31f38d-00163cff7ec69c-c791039-1235456-176927cb320bef%22%2C%22first_id%22%3A%22%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24os%22%3A%22Windows%22%2C%22%24browser%22%3A%22Chrome%22%2C%22%24browser_version%22%3A%2287.0.4280.88%22%7D%2C%22%24device_id%22%3A%22176927cb31f38d-00163cff7ec69c-c791039-1235456-176927cb320bef%22%7D; PRE_UTM=; PRE_HOST=; PRE_LAND=https%3A%2F%2Fwww.lagou.com%2Fjobs%2Flist%5Fgolang%3FlabelWords%3D%26fromSearch%3Dtrue%26suginput%3D; LGSID=20201224162503-9c070da8-54ab-4549-90b0-7c95badda5c4; PRE_SITE=https%3A%2F%2Fwww.lagou.com; _gat=1; Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1608798303; LGRID=20201224162503-524bb5c9-1cc3-408d-aeb7-c9bd8e125819; X_HTTP_TOKEN=46fce29de2577a4401389780618603e2dbc4fef2ca; SEARCH_ID=bc8fd0b88e5d407fb38b7e27560cc129")
 	//req.Header.Add("Cookie", "JSESSIONID=ABAAABAABEIABCI76211F4613E8F3F9A0CDBC51203F3A7F; " +
 	//	"WEBTJ-ID="+getDate()+"-1769267f49fb2b-091b185a012074-6c112c7c-2073600-1769267f4a0ab9; " +
 	//	"RECOMMEND_TIP=true; sajssdk_2015_cross_new_user=1; sensorsdata2015session=%7B%7D; " +
@@ -156,20 +157,20 @@ func (l *jobService) GetJobs(pn int, kd string) (*ListResult, error) {
 	//	"latest_referrer%22%3A%22%22%2C%22%24os%22%3A%22MacOS%22%2C%22%24browser%22%3A%22Chrome%22%2C%22%24" +
 	//	"browser_version%22%3A%2287.0.4280.88%22%7D%2C%22%24device_id%22%3A%221769267f60155-0b0b299e842fc3-6c112c7c-2073600-" +
 	//	"1769267f6027fd%22%7D; LGRID=20201224094110-49010a46-cd95-4b79-979c-9c0a34b8301a")
-	//req.Header.Add("Cookie", "_ga=GA1.2.161331334.1522592243; "+
-	//	"user_trace_token=20201224221723-"+uuid.GetUUID()+"; "+
-	//	"LGUID=20180401221723-"+uuid.GetUUID()+"; "+
-	//	"index_location_city=%E6%B7%B1%E5%9C%B3; "+
-	//	"JSESSIONID="+uuid.GetUUID()+"; "+
-	//	"_gid=GA1.2.1140631185.1523090450; "+
-	//	"Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1522592243,1523090450; "+
-	//	"TG-TRACK-CODE=index_search; _gat=1; "+
-	//	"LGSID=20180407221340-"+uuid.GetUUID()+"; "+
-	//	"PRE_UTM=; PRE_HOST=; PRE_SITE=https%3A%2F%2Fwww.lagou.com%2F; "+
-	//	"PRE_LAND=https%3A%2F%2Fwww.lagou.com%2Fjobs%2Flist_golang%3FlabelWords%3D%26fromSearch%3Dtrue%26suginput%3D; "+
-	//	"Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1523110425; "+
-	//	"LGRID=20180407221344-"+uuid.GetUUID()+"; "+
-	//	"SEARCH_ID="+uuid.GetUUID()+"")
+	req.Header.Add("Cookie", "_ga=GA1.2.161331334.1522592243; "+
+		"user_trace_token=20201224221723-"+uuid.GetUUID()+"; "+
+		"LGUID=20180401221723-"+uuid.GetUUID()+"; "+
+		"index_location_city=%E6%B7%B1%E5%9C%B3; "+
+		"JSESSIONID="+uuid.GetUUID()+"; "+
+		"_gid=GA1.2.1140631185.1523090450; "+
+		"Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1522592243,1523090450; "+
+		"TG-TRACK-CODE=index_search; _gat=1; "+
+		"LGSID=20180407221340-"+uuid.GetUUID()+"; "+
+		"PRE_UTM=; PRE_HOST=; PRE_SITE=https%3A%2F%2Fwww.lagou.com%2F; "+
+		"PRE_LAND=https%3A%2F%2Fwww.lagou.com%2Fjobs%2Flist_golang%3FlabelWords%3D%26fromSearch%3Dtrue%26suginput%3D; "+
+		"Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1523110425; "+
+		"LGRID=20180407221344-"+uuid.GetUUID()+"; "+
+		"SEARCH_ID="+uuid.GetUUID()+"")
 	req.Header.Add("Host", "www.lagou.com")
 	req.Header.Add("Origin", "https://www.lagou.com")
 	req.Header.Add("Referer", "https://www.lagou.com/jobs/list_golang?labelWords=&fromSearch=true&suginput=")

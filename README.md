@@ -1,6 +1,6 @@
 # 了解一下Golang的市场行情
 
-项目地址：https://github.com/go-crawler/go_jobs
+项目地址：https://github.com/ChinaArJun/LagouColly
 
 如果对你有所帮助，欢迎 Star，图床使用的是国外的，如果看不到图片的话你可能需要翻墙。
 

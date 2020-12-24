@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	delayTime = time.Tick(time.Millisecond * 1)
+	delayTime = time.Tick(time.Nanosecond * 1)
 
 	jobScheduler = scheduler.NewJobScheduler()
 	jobPipeline  = model.NewJobPipeline()
