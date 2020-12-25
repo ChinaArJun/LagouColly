@@ -1,6 +1,7 @@
 package model
 
 import (
+	"fmt"
 	"log"
 	"sync"
 )
@@ -12,6 +13,8 @@ var (
 )
 
 type LgJob struct {
+	// 工作名称
+	//JobSkill string `json:"job_skill" gorm:""`
 	// 城市名称
 	City string
 	// 地区
@@ -104,6 +107,10 @@ type LgJob struct {
 
 func NewJobPipeline() *LgJob {
 	return &LgJob{}
+}
+
+func (obj LgJob) TableName() string {
+	return fmt.Sprintf("job_java_25_01" + obj.City)
 }
 
 func (j *LgJob) Append(js []LgJob) {

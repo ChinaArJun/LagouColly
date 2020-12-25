@@ -114,7 +114,7 @@ func GetJobs(city string, pn int, kd string) ([]downloader.Result, int, int, err
 		return nil, 0, 0, err
 	}
 
-	log.Printf("GetJobs Code: %d, GetJobs City: %s, Pn: %d, Kd: %s", result.Code, city, pn, kd)
+	log.Printf("GetJobs Code: %d, GetJobs City: %s, Pn: %d, Kd: %s page: %s", result.Code, city, pn, kd, result.Content.PageNo)
 
 	if result.Code == 0 && result.Success == true {
 		content := result.Content

@@ -24,9 +24,9 @@ func init() {
 	}
 
 	DB.SingularTable(true)
-	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
-		//return "sp_" + defaultTableName
-		//return "sp_job"
-		return "job_java"
-	}
+	//gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
+	//	//return "sp_" + defaultTableName
+	//	//return "sp_job"
+	//	return "job_golang_25_01"
+	//}
 }
