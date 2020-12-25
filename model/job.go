@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"log"
 	"sync"
 )
@@ -110,7 +109,8 @@ func NewJobPipeline() *LgJob {
 }
 
 func (obj LgJob) TableName() string {
-	return fmt.Sprintf("job_java_25_01" + obj.City)
+	//return fmt.Sprintf("job_java_25_01" + obj.City)
+	return "sp_jobs"
 }
 
 func (j *LgJob) Append(js []LgJob) {

@@ -10,17 +10,26 @@ import (
 var (
 
 	kds = []string{
-		"java",
+		//"java",
+		"web",
+		"h5",
+		"前端",
+		//"ios",
+		//"android",
+		//"安卓",
+		//"go",
+		//"golang",
+		//"php",
 	}
 	citys = []string{
-		//"北京",
+		"北京",
 		//"上海",
 		//"广州",
 		//"深圳",
 		//"杭州",
 		//"成都",
 		//"重庆",
-		"武汉",
+		//"武汉",
 		//"杭州",
 		//"长沙",
 		//"西安",
@@ -51,6 +60,22 @@ func main() {
 			}(city, kd)
 		}
 	}
+
+	//单地区爬取
+	//for _, kd := range kds {
+	//	wg.Add(1)
+	//	go func(city string, kd string) {
+	//		defer wg.Done()
+	//		initResult, err := spider.InitJobs(city, 1, kd)
+	//		if err != nil {
+	//			log.Fatalln(err)
+	//		}
+	//
+	//		initResults = append(initResults, initResult...)
+	//		loopResults = append(loopResults, spider.LoopJobs())
+	//	}(citys[0], kd)
+	//}
+
 
 	wg.Wait()
 	log.Println("爬取完成")
